@@ -1,0 +1,17 @@
+menu: [
+  label: 'Packages'
+  submenu: [
+    label: 'Rdio'
+    submenu: [
+      { label: 'Add',      command: 'rdio:add' }
+      { label: 'Next',     command: 'rdio:next' }
+      { label: 'Pause',    command: 'rdio:pause' }
+      { label: 'Play',     command: 'rdio:play' }
+      { label: 'Previous', command: 'rdio:previous' }
+      { label: 'Remove',   command: 'rdio:remove' }
+      { label: 'Sync',     command: 'rdio:sync' }
+      { label: 'Toggle',   command: 'rdio:toggle' }
+      { label: 'Unsync',   command: 'rdio:unsync' }
+    ]
+  ]
+]
