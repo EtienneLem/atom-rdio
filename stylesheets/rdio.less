@@ -12,6 +12,8 @@
   display: inline-block;
   position: relative;
   margin-right: .4em;
+  height: 14px;
+  overflow: hidden;
 
   &[data-state="paused"] {
     .rdio-sound-bar {
@@ -29,7 +31,6 @@
   width: 3px; height: 3px;
   background: @text-color-subtle;
   -webkit-animation: sound 400ms linear infinite alternate;
-  -webkit-transform-origin: bottom left;
 }
 
 .rdio-sound-bar:nth-child(1) { -webkit-animation-duration: 274ms }
@@ -40,6 +41,6 @@
 
 
 @-webkit-keyframes sound {
-  0%   { opacity: .35; -webkit-transform: scaleY(1) }
-  100% { opacity: 1;   -webkit-transform: scaleY(4.3) }
+  0%   { opacity: .35; height: 3px; }
+  100% { opacity: 1;   height: 14px; }
 }

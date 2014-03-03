@@ -71,4 +71,4 @@ class RdioView extends View
           return if @initiated
           @initiated = true
           @container.attr('data-initiated', true)
-    , 1000
+    , 1500
