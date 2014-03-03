@@ -1,7 +1,7 @@
 {
   "name": "Rdio",
   "main": "./lib/rdio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Adds Rdio controls to Atom and displays the currently playing song in the status bar",
   "repository": "https://github.com/EtienneLem/atom-rdio",
