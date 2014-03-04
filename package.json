@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "applescript": "0.2.1",
-    "open": "0.0.4"
+    "open": "0.0.4",
+    "MD5": "1.2.0"
   }
 }

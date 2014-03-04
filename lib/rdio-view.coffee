@@ -1,5 +1,6 @@
 {View} = require 'atom'
 open = require 'open'
+md5 = require 'MD5'
 RdioDesktop = require './rdio-desktop'
 
 module.exports =
@@ -30,9 +31,23 @@ class RdioView extends View
 
   # Commands
   addCommands: ->
+    # Defaults
     for command in RdioDesktop.COMMANDS
       do (command) =>
         atom.workspaceView.command "rdio:#{command.name}", '.editor', => @rdioDesktop[command.name]()
+
+    # Play song based on current file or selection
+    atom.workspaceView.command "rdio:play-code-mood", '.editor', this.currentMood
+
+  # Current mood
+  currentMood: =>
+    editor = atom.workspaceView.getActivePaneItem()
+    content = (editor.getSelectedText() || editor.getText()).replace(/(\n)/gm, '')
+
+    # Get the first 7 digits of the md5 string
+    digits = md5(content).replace(/\D/g, '').substring(0, 6)
+    console.log "Rdio Code Mood: See http://rdioconsole.appspot.com/#keys%3Dt#{digits}%26method%3Dget for more track info."
+    @rdioDesktop.playTrack(digits)
 
   # Attach the view to the farthest right of the status bar
   attach: =>

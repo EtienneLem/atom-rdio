@@ -13,6 +13,15 @@
 - Opens current track directly inside `Rdio.app` when clicking the title;
 - Sound bars animation pauses when Rdio is paused.
 
+## Code Mood™
+What if I told you that every bits of code that you write has a mood? Introducing the `Rdio: Play Code Mood` command, where your code actually tells Rdio what to play.
+
+Madness! How is that possible? It’s actually quite simple. It will convert your current pane’s code (or selection if you have an active selection) into an MD5 digest and keeps only the first 6 digits. It will then ask Rdio.app to play the track number. [Rdio does a pretty good job](https://gist.github.com/EtienneLem/9339045) at always playing something. You will always get the same song from an unchanged file.
+
+Every variable, every constant, every method, every single line of code has it’s own mood. Add a new feature, get a new song! Hopefully your code sounds as good as it looks :heart:
+
+Do note that no API calls are made, so if your code wants to play an unavailable track, there’s nothing I can do to stop it. Rdio will fallback to auto play or do nothing. Check your `Developer Tools` to get more information about each track chosen.
+
 ## Commands
 ```rb
 # Playstate
@@ -21,6 +30,7 @@ Pause
 Toggle
 
 # Track
+Play Code Mood
 Next
 Previous
 

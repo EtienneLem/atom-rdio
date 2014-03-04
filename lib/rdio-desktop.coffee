@@ -14,6 +14,9 @@ class RdioDesktop
     { name: 'unsync',   function: 'execute', action: 'remove from mobile' }
   ]
 
+  # Track
+  playTrack: (trackKey) -> this.execute("play source \"t#{trackKey}\"")
+
   # States methods
   currentState:  (callback) -> this.get('player state', callback)
 
