@@ -53,6 +53,7 @@ class RdioView extends View
         if state is undefined
           if @initiated
             @initiated = false
+            @currentTrack = {}
             @container.removeAttr('data-initiated')
           return
 
