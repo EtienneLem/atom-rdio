@@ -30,9 +30,10 @@ Pause
 Toggle
 
 # Track
-Play Code Mood
 Next
 Previous
+Play Code Mood
+Open Current Track
 
 # Collection
 Add
