@@ -5,6 +5,13 @@ RdioDesktop = require './rdio-desktop'
 
 module.exports =
 class RdioView extends View
+  @CONFIGS = {
+    showEqualizer:
+      key: 'showEqualizer (WindowResizePerformanceIssue )'
+      action: 'toggleEqualizer'
+      default: true
+  }
+
   @content: ->
     @div class: 'rdio inline-block', =>
       @div outlet: 'container', class: 'rdio-container', =>
@@ -62,6 +69,14 @@ class RdioView extends View
     # Navigate to current track inside Rdio
     @currentlyPlaying.on 'click', (e) ->
       open(this.href)
+
+    # Toggle equalizer on config change
+    showEqualizerKey = "rdio.#{RdioView.CONFIGS.showEqualizer.key}"
+    this.subscribe atom.config.observe showEqualizerKey, callNow: true, =>
+      if atom.config.get(showEqualizerKey)
+        @soundBars.removeAttr('data-hidden')
+      else
+        @soundBars.attr('data-hidden', true)
 
   afterAttach: =>
     setInterval =>
