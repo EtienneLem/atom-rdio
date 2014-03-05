@@ -26,8 +26,14 @@ class RdioView extends View
     this.addCommands()
 
     # Make sure the view gets added last
-    this.subscribe atom.packages.once 'activated', =>
-      setTimeout this.attach, 1
+    if atom.workspaceView.statusBar
+      this.attach()
+    else
+      this.subscribe atom.packages.once 'activated', =>
+        setTimeout this.attach, 1
+
+  destroy: ->
+    this.detach()
 
   # Commands
   addCommands: ->
