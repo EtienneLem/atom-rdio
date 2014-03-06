@@ -75,7 +75,7 @@ class RdioView extends View
       this.openWithRdio(e.currentTarget.href)
 
     # Toggle equalizer on config change
-    showEqualizerKey = "rdio.#{RdioView.CONFIGS.showEqualizer.key}"
+    showEqualizerKey = "Rdio.#{RdioView.CONFIGS.showEqualizer.key}"
     this.subscribe atom.config.observe showEqualizerKey, callNow: true, =>
       if atom.config.get(showEqualizerKey)
         @soundBars.removeAttr('data-hidden')
