@@ -4,8 +4,14 @@
 // Rdio --------------------------------------------------
 .rdio a { color: @text-color-subtle }
 
-.rdio-container { display: none }
 .rdio-container[data-initiated] { display: inline-block }
+.rdio-container {
+  display: none;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 // Sound bars --------------------------------------------
 .rdio-sound-bars {
