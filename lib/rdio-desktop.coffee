@@ -8,7 +8,7 @@ class RdioDesktop
     { name: 'pause',    function: 'execute', action: 'pause' }
     { name: 'play',     function: 'execute', action: 'play' }
     { name: 'previous', function: 'execute', action: 'previous track' }
-    { name: 'remove',   function: 'execute', action: 'remove form collection' }
+    { name: 'remove',   function: 'execute', action: 'remove from collection' }
     { name: 'sync',     function: 'execute', action: 'sync to mobile' }
     { name: 'toggle',   function: 'execute', action: 'playpause' }
     { name: 'unsync',   function: 'execute', action: 'remove from mobile' }
