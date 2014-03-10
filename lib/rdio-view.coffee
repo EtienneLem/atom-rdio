@@ -13,8 +13,8 @@ class RdioView extends View
   }
 
   @content: ->
-    @div class: 'rdio inline-block', =>
-      @div outlet: 'container', class: 'rdio-container', =>
+    @div class: 'rdio', =>
+      @div outlet: 'container', class: 'rdio-container inline-block', =>
         @span outlet: 'soundBars', class: 'rdio-sound-bars', =>
           @span class: 'rdio-sound-bar'
           @span class: 'rdio-sound-bar'
