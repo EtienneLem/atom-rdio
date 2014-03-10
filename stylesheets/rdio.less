@@ -2,15 +2,20 @@
 @import "ui-variables";
 
 // Rdio --------------------------------------------------
-.rdio a { color: @text-color-subtle }
+.rdio {
+  display: inline-block;
 
-.rdio-container[data-initiated] { display: inline-block }
+  a { color: @text-color-subtle }
+}
+
 .rdio-container {
   display: none;
   max-width: 300px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &[data-initiated] { display: inline-block; }
 }
 
 // Sound bars --------------------------------------------
