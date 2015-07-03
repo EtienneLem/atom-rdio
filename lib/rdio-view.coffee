@@ -24,11 +24,11 @@ class RdioView extends View
     @initiated = false
     @rdioDesktop = new RdioDesktop
 
-    this.addCommands()
-    this.attach()
+    @addCommands()
+    @attach()
 
   destroy: ->
-    this.detach()
+    @detach()
 
   # Commands
   addCommands: ->
@@ -38,10 +38,10 @@ class RdioView extends View
         atom.commands.add 'atom-workspace', "rdio:#{command.name}", => @rdioDesktop[command.name]()
 
     # Open current track with Rdio.app
-    atom.commands.add 'atom-workspace', 'rdio:open-current-track', => this.openWithRdio(@currentlyPlaying.attr('href'))
+    atom.commands.add 'atom-workspace', 'rdio:open-current-track', => @openWithRdio(@currentlyPlaying.attr('href'))
 
     # Play song based on current file or selection
-    atom.commands.add 'atom-workspace', 'rdio:play-code-mood', this.currentMood
+    atom.commands.add 'atom-workspace', 'rdio:play-code-mood', @currentMood
 
   # Current mood
   currentMood: =>
@@ -59,7 +59,7 @@ class RdioView extends View
 
     # Navigate to current track inside Rdio
     @currentlyPlaying.on 'click', (e) =>
-      this.openWithRdio(e.currentTarget.href)
+      @openWithRdio(e.currentTarget.href)
 
     # Toggle equalizer on config change
     atom.config.observe 'Rdio.showEqualizer', (value) =>
