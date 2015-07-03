@@ -1,4 +1,4 @@
-{$, View} = require 'atom-space-pen-views'
+{View} = require 'atom-space-pen-views'
 open = require 'open'
 md5 = require 'MD5'
 RdioDesktop = require './rdio-desktop'
