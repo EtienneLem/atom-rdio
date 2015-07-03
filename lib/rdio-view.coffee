@@ -17,7 +17,8 @@ class RdioView extends View
 
         @a outlet: 'currentlyPlaying', href: 'javascript:',''
 
-  initialize: ->
+  initialize: (statusBar) ->
+    @statusBar = statusBar
     @currentTrack = {}
     @currentState = null
     @initiated = false
@@ -54,8 +55,7 @@ class RdioView extends View
 
   # Attach the view to the farthest right of the status bar
   attach: =>
-    statusBar = document.querySelector('status-bar')
-    @statusBarTile = statusBar.addRightTile(item: this, priority: 100)
+    @statusBarTile = @statusBar.addRightTile(item: this, priority: 100)
 
     # Navigate to current track inside Rdio
     @currentlyPlaying.on 'click', (e) =>
