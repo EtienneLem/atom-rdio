@@ -1,17 +1,10 @@
-{View} = require 'atom'
+{$, View} = require 'atom-space-pen-views'
 open = require 'open'
 md5 = require 'MD5'
 RdioDesktop = require './rdio-desktop'
 
 module.exports =
 class RdioView extends View
-  @CONFIGS = {
-    showEqualizer:
-      key: 'showEqualizer (WindowResizePerformanceIssue )'
-      action: 'toggleEqualizer'
-      default: true
-  }
-
   @content: ->
     @div class: 'rdio', =>
       @div outlet: 'container', class: 'rdio-container inline-block', =>
@@ -31,13 +24,7 @@ class RdioView extends View
     @rdioDesktop = new RdioDesktop
 
     this.addCommands()
-
-    # Make sure the view gets added last
-    if atom.workspaceView.statusBar
-      this.attach()
-    else
-      this.subscribe atom.packages.once 'activated', =>
-        setTimeout this.attach, 1
+    this.attach()
 
   destroy: ->
     this.detach()
@@ -47,14 +34,13 @@ class RdioView extends View
     # Defaults
     for command in RdioDesktop.COMMANDS
       do (command) =>
-        atom.workspaceView.command "rdio:#{command.name}", '.editor', => @rdioDesktop[command.name]()
+        atom.commands.add 'atom-workspace', "rdio:#{command.name}", => @rdioDesktop[command.name]()
 
     # Open current track with Rdio.app
-    atom.workspaceView.command 'rdio:open-current-track', '.editor', =>
-      this.openWithRdio(@currentlyPlaying.attr('href'))
+    atom.commands.add 'atom-workspace', 'rdio:open-current-track', => this.openWithRdio(@currentlyPlaying.attr('href'))
 
     # Play song based on current file or selection
-    atom.workspaceView.command 'rdio:play-code-mood', '.editor', this.currentMood
+    atom.commands.add 'atom-workspace', 'rdio:play-code-mood', this.currentMood
 
   # Current mood
   currentMood: =>
@@ -68,24 +54,27 @@ class RdioView extends View
 
   # Attach the view to the farthest right of the status bar
   attach: =>
-    atom.workspaceView.statusBar.appendRight(this)
+    statusBar = document.querySelector('status-bar')
+    @statusBarTile = statusBar.addRightTile(item: this, priority: 100)
 
     # Navigate to current track inside Rdio
     @currentlyPlaying.on 'click', (e) =>
       this.openWithRdio(e.currentTarget.href)
 
     # Toggle equalizer on config change
-    showEqualizerKey = "Rdio.#{RdioView.CONFIGS.showEqualizer.key}"
-    this.subscribe atom.config.observe showEqualizerKey, callNow: true, =>
-      if atom.config.get(showEqualizerKey)
-        @soundBars.removeAttr('data-hidden')
-      else
-        @soundBars.attr('data-hidden', true)
+    atom.config.observe 'Rdio.showEqualizer', (value) =>
+      @toggleEqualizer(value)
 
   openWithRdio: (href) ->
     open(href)
 
-  afterAttach: =>
+  toggleEqualizer: (show) ->
+    if show
+      @soundBars.removeAttr('data-hidden')
+    else
+      @soundBars.attr('data-hidden', true)
+
+  attached: =>
     setInterval =>
       @rdioDesktop.currentState (state) =>
         if state isnt @currentState

@@ -1,15 +1,15 @@
 RdioView = require './rdio-view'
 
 module.exports =
-  configDefaults: do ->
-    configs = {}
-    for configName, configData of RdioView.CONFIGS
-      configs[configData.key] = configData.default
+  config:
+    showEqualizer:
+      title: 'Show Equalizer'
+      description: 'May cause window resize performance issues'
+      type: 'boolean'
+      default: true
 
-    configs
-
-  activate: (state) ->
-    @rdioView = new RdioView(state.rdioViewState)
+  consumeStatusBar: (statusBar) ->
+    @rdioView = new RdioView(statusBar)
 
   deactivate: ->
-    @rdioView.destroy()
+    @rdioView?.destroy()

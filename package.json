@@ -10,8 +10,16 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
+    "atom-space-pen-views": "^2.0.3",
     "applescript": "0.2.1",
     "open": "0.0.4",
     "MD5": "1.2.0"
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    }
   }
 }
