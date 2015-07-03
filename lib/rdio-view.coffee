@@ -55,7 +55,7 @@ class RdioView extends View
 
   # Attach the view to the farthest right of the status bar
   attach: =>
-    @statusBarTile = @statusBar.addRightTile(item: this, priority: 100)
+    @statusBarTile = @statusBar.addRightTile(item: this, priority: -1001)
 
     # Navigate to current track inside Rdio
     @currentlyPlaying.on 'click', (e) =>
