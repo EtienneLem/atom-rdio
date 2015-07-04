@@ -9,6 +9,11 @@
   <p><img src="https://f.cloud.github.com/assets/436043/2303448/3d0476ea-a1bd-11e3-8398-7086c2bb13f4.png"></p>
 </div>
 
+## Requirements
+- [Atom](https://atom.io/)
+- [Rdio](https://rd.io)
+- Mac OS X (applescript)
+
 ## Features
 - Opens current track directly inside `Rdio.app` when clicking the title;
 - Sound bars animation pauses when Rdio is paused.
